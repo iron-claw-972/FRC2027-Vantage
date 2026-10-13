@@ -4,7 +4,6 @@ import java.util.function.BooleanSupplier;
 
 import org.littletonrobotics.junction.Logger;
 
-import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.AutoBuilderException;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 // TODO: 2027-ALPHA-FIX - Re-enable Choreo when updated
@@ -24,7 +23,6 @@ import frc.robot.commands.LogCommand;
 import frc.robot.commands.drive.DefaultDriveCommand;
 // import frc.robot.commands.auto.ChoreoPathCommandBuilder;
 import frc.robot.commands.drive.SysIDDriveCommand;
-import frc.robot.constants.AutoConstants;
 import frc.robot.constants.Constants;
 import frc.robot.constants.VisionConstants;
 import frc.robot.controls.BaseDriverConfig;
@@ -34,7 +32,6 @@ import frc.robot.util.Motor;
 import frc.robot.subsystems.power.BatteryManager;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.GyroIOPigeon2;
-import frc.robot.util.PathGroupLoader;
 import frc.robot.subsystems.vision.DetectedObject;
 import frc.robot.subsystems.vision.Vision;
 
@@ -88,7 +85,6 @@ public class RobotContainer {
         break;
 
       default:
-
 
       case PrimeJr: // AKA Valence
 

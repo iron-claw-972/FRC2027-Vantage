@@ -137,45 +137,46 @@ public class VisionConstants {
    *
    * <p>+ Yaw: Counterclockwise
    */
-  public static final ArrayList<Pair<String, Transform3d>> APRIL_TAG_CAMERAS = new ArrayList<>(); /*
-      new ArrayList<Pair<String, Transform3d>>(
-          List.of(
-              new Pair<String, Transform3d>(
-                  "CameraFrontLeft",
-                  new Transform3d(
-                      new Translation3d(
-                          Units.inchesToMeters(-8.47),
-                          Units.inchesToMeters(11.54),
-                          Units.inchesToMeters(17.7)),
-                      new Rotation3d(
-                          0, Units.degreesToRadians(-22.0), Units.degreesToRadians(55.0)))),
-              new Pair<String, Transform3d>(
-                  "CameraFrontRight",
-                  new Transform3d(
-                      new Translation3d(
-                          Units.inchesToMeters(-8.47),
-                          Units.inchesToMeters(-11.54),
-                          Units.inchesToMeters(17.7)),
-                      new Rotation3d(
-                          0, Units.degreesToRadians(-22.0), Units.degreesToRadians(-55.0)))),
-              new Pair<String, Transform3d>(
-                  "CameraBackLeft",
-                  new Transform3d(
-                      new Translation3d(
-                          Units.inchesToMeters(-10.91),
-                          Units.inchesToMeters(12),
-                          Units.inchesToMeters(17.66)),
-                      new Rotation3d(
-                          0, Units.degreesToRadians(-22.0), Units.degreesToRadians(145.0)))),
-              new Pair<String, Transform3d>(
-                  "CameraBackRight",
-                  new Transform3d(
-                      new Translation3d(
-                          Units.inchesToMeters(-10.91),
-                          Units.inchesToMeters(-12),
-                          Units.inchesToMeters(17.66)),
-                      new Rotation3d(
-                          0, Units.degreesToRadians(-22.0), Units.degreesToRadians(-145.0)))))); */
+  public static final ArrayList<Pair<String, Transform3d>> APRIL_TAG_CAMERAS =
+      new ArrayList<>(); /*
+                         new ArrayList<Pair<String, Transform3d>>(
+                             List.of(
+                                 new Pair<String, Transform3d>(
+                                     "CameraFrontLeft",
+                                     new Transform3d(
+                                         new Translation3d(
+                                             Units.inchesToMeters(-8.47),
+                                             Units.inchesToMeters(11.54),
+                                             Units.inchesToMeters(17.7)),
+                                         new Rotation3d(
+                                             0, Units.degreesToRadians(-22.0), Units.degreesToRadians(55.0)))),
+                                 new Pair<String, Transform3d>(
+                                     "CameraFrontRight",
+                                     new Transform3d(
+                                         new Translation3d(
+                                             Units.inchesToMeters(-8.47),
+                                             Units.inchesToMeters(-11.54),
+                                             Units.inchesToMeters(17.7)),
+                                         new Rotation3d(
+                                             0, Units.degreesToRadians(-22.0), Units.degreesToRadians(-55.0)))),
+                                 new Pair<String, Transform3d>(
+                                     "CameraBackLeft",
+                                     new Transform3d(
+                                         new Translation3d(
+                                             Units.inchesToMeters(-10.91),
+                                             Units.inchesToMeters(12),
+                                             Units.inchesToMeters(17.66)),
+                                         new Rotation3d(
+                                             0, Units.degreesToRadians(-22.0), Units.degreesToRadians(145.0)))),
+                                 new Pair<String, Transform3d>(
+                                     "CameraBackRight",
+                                     new Transform3d(
+                                         new Translation3d(
+                                             Units.inchesToMeters(-10.91),
+                                             Units.inchesToMeters(-12),
+                                             Units.inchesToMeters(17.66)),
+                                         new Rotation3d(
+                                             0, Units.degreesToRadians(-22.0), Units.degreesToRadians(-145.0)))))); */
 
   /** The transformations from the robot to object detection cameras */
   public static final ArrayList<Transform3d> OBJECT_DETECTION_CAMERAS =

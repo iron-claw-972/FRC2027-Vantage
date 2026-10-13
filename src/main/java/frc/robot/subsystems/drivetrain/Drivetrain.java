@@ -254,7 +254,6 @@ public class Drivetrain extends SubsystemBase {
       rawGyroRotation = gyroInputs.odometryYawPositions[i];
       // Apply update
       poseEstimator.updateWithTime(sampleTimestamps[i], rawGyroRotation, modulePositions);
-      
     }
     Logger.recordOutput("Odometry/module poses", modulePoses.getModulePoses());
     updateOdometryVision();

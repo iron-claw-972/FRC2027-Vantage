@@ -4,7 +4,6 @@ import java.util.function.BooleanSupplier;
 
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.driverstation.Alliance;
-import org.wpilib.driverstation.Gamepad;
 import org.wpilib.command2.CommandScheduler;
 import org.wpilib.command2.InstantCommand;
 import frc.robot.Robot;
