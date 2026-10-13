@@ -1,1 +1,1 @@
-Code for the 2026-2027 FRC Season (Systemcore).
+Rewrite of Vantage (SystemCore - alpha 7)
