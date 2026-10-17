@@ -5,6 +5,7 @@ import org.wpilib.math.util.Units;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -13,14 +14,12 @@ import frc.robot.constants.Constants;
 
 public class IntakeIOReal implements IntakeIO {
     public final TalonFX rollerMotor = new TalonFX(0, Constants.CANIVORE_CAN); // 0 is a temp id
-    public final TalonFX pivotMotor = new TalonFX(1, Constants.CANIVORE_CAN); // 0 is a temp id
+    public final TalonFX pivotMotor = new TalonFX(1, Constants.CANIVORE_CAN); // 1 is a temp id
     private DCMotor dcMotor = DCMotor.getKrakenX60(1);
 
     public IntakeIOReal() {
         rollerMotor.getConfigurator().apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake).withInverted(InvertedValue.CounterClockwise_Positive));
-        pivotMotor.getConfigurator().apply(new MotorOutputConfigs().withInverted(InvertedValue.CounterClockwise_Positive));
-        // pivotMotor.setNeutralMOde i cant find equal
-        
+        pivotMotor.getConfigurator().apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Coast).withInverted(InvertedValue.CounterClockwise_Positive));
         rollerMotor.getConfigurator().apply(new CurrentLimitsConfigs().withStatorCurrentLimit(40).withStatorCurrentLimitEnable(true));
     }
 

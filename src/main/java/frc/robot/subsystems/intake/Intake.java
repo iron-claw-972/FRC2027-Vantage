@@ -12,7 +12,7 @@ public class Intake extends SubsystemBase {
     private final IntakeIOInputsAutoLogged inputs = new IntakeIOInputsAutoLogged();
     private final double positionTolerance = 5;
     private boolean hasCoral = false;
-    private boolean isMoving = false;
+    // private boolean isMoving = false; -> Unused in original code aswell
     private PIDController stowPID = new PIDController(0.015, 0, 0);
     private double startPosition = 90;
     private double power;
@@ -70,11 +70,11 @@ public class Intake extends SubsystemBase {
 
     public void setSpeed(double power) {
         io.setRollerMotorThrottle(power);
-        isMoving = Math.abs(power) < 0.01;
+        // isMoving = Math.abs(power) < 0.01; -> isMoving unused in original code
     }
 
     public void stow() {
-        stowPID.setSetpoint(IntakeConstants.STOW_SETPOINT); // IntakeConstants.Stowsetpoint
+        stowPID.setSetpoint(IntakeConstants.STOW_SETPOINT);
     }
 
     public void unstow() {
