@@ -5,6 +5,9 @@ import org.wpilib.math.controller.ArmFeedforward;
 import org.wpilib.math.controller.PIDController;
 import org.wpilib.math.util.Units;
 
+import com.ctre.phoenix6.hardware.CANrange;
+import com.ctre.phoenix6.signals.MeasurementHealthValue;
+
 import frc.robot.constants.Constants;
 
 public class Intake extends SubsystemBase {
@@ -18,9 +21,9 @@ public class Intake extends SubsystemBase {
     private double power;
     private ArmFeedforward feedforward = new ArmFeedforward(0,
             Constants.GRAVITY_ACCELERATION * IntakeConstants.CENTER_OF_MASS_DIST * IntakeConstants.MASS
-                    / IntakeConstants.PIVOT_GEAR_RATIO * inputs.motorR0hms / inputs.motorKtNMPerAmp / Constants.ROBOT_VOLTAGE,
+                    / IntakeConstants.PIVOT_GEAR_RATIO * inputs.motorROhms / inputs.motorKtNMPerAmp / Constants.ROBOT_VOLTAGE,
             0);
-    // private LaserCan laserCan;
+    private CANrange canRange;
 
     public Intake(IntakeIO io) {
         this.io = io;
@@ -37,11 +40,11 @@ public class Intake extends SubsystemBase {
         power = stowPID.calculate(position) + feedforward.calculate(Units.degreesToRadians(position), 0);
         power = Math.clamp(power, -1, 1);
         io.setPivotMotorThrottle(power);
-        // if (laserCan != null) {
-        //     Measurement measurement = laserCan.getMeasurement();
-        //     hasCoral = measurement != null && measurement.status == LaserCan.LASERCAN_STATUS_VALID_MEASUREMENT
-        //             && measurement.distance_mm <= 1000 * IntakeConstants.DETECT_CORAL_DIST;
-        // }
+        if (canRange != null) {
+            var dist = canRange.getDistance().refresh().getValueAsDouble();
+            var health = canRange.getMeasurementHealth().refresh().getValue();
+            hasCoral = health == MeasurementHealthValue.Good && dist <= IntakeConstants.DETECT_CORAL_DIST;
+        }
     }
 
     public double getPivotAngle() {

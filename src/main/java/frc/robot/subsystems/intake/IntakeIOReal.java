@@ -5,7 +5,6 @@ import org.wpilib.math.util.Units;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -26,8 +25,8 @@ public class IntakeIOReal implements IntakeIO {
     @Override
     public void updateInputs(IntakeIOInputsAutoLogged inputs) {
         inputs.measuredPivotPosition = Units.rotationsToDegrees(pivotMotor.getPosition().getValueAsDouble()) / IntakeConstants.PIVOT_GEAR_RATIO;
-        inputs.motorR0hms = dcMotor.R; // Guessed was equal to rohms
-        inputs.motorKtNMPerAmp = dcMotor.Kt; // Guessed was equal to ktnperamp
+        inputs.motorROhms = dcMotor.R; // Guessed was equal to rohms
+        inputs.motorKtNMPerAmp = dcMotor.Kt; // Guessed was equal to ktnmperamp
     }
 
     @Override

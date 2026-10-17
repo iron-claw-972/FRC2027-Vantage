@@ -6,7 +6,13 @@ public interface IntakeIO {
     @AutoLog
     public static class IntakeIOInputs {
         public double measuredPivotPosition = 0.0;
-        public double motorR0hms;
+        /**
+         * The units are in ohms.
+         */
+        public double motorROhms; 
+        /**
+         * Motor torque constant (units: NM / Amp)
+         */
         public double motorKtNMPerAmp;
     }
 
