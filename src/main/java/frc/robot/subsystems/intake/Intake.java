@@ -1,9 +1,11 @@
 package frc.robot.subsystems.intake;
 
 import org.wpilib.command2.SubsystemBase;
+import org.wpilib.math.controller.ArmFeedforward;
 import org.wpilib.math.controller.PIDController;
-import org.wpilib.math.util.MathUtil;
 import org.wpilib.math.util.Units;
+
+import frc.robot.constants.Constants;
 
 public class Intake extends SubsystemBase {
     private final IntakeIO io;
@@ -13,12 +15,17 @@ public class Intake extends SubsystemBase {
     private boolean isMoving = false;
     private PIDController stowPID = new PIDController(0.015, 0, 0);
     private double startPosition = 90;
-
+    private double power;
+    private ArmFeedforward feedforward = new ArmFeedforward(0,
+            Constants.GRAVITY_ACCELERATION * IntakeConstants.CENTER_OF_MASS_DIST * IntakeConstants.MASS
+                    / IntakeConstants.PIVOT_GEAR_RATIO * inputs.motorR0hms / inputs.motorKtNMPerAmp / Constants.ROBOT_VOLTAGE,
+            0);
+    // private LaserCan laserCan;
 
     public Intake(IntakeIO io) {
         this.io = io;
 
-        io.setPivotMotorPosition(Units.degreesToRotations(startPosition) * 69); // IntakeConstants.PIVOT_GEAR_RATIO = 69
+        io.setPivotMotorPosition(Units.degreesToRotations(startPosition) * IntakeConstants.PIVOT_GEAR_RATIO);
         stowPID.setTolerance(positionTolerance);
         setAngle(startPosition);
     }
@@ -26,6 +33,15 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateInputs(inputs);
+        double position = getPivotAngle();
+        power = stowPID.calculate(position) + feedforward.calculate(Units.degreesToRadians(position), 0);
+        power = Math.clamp(power, -1, 1);
+        io.setPivotMotorThrottle(power);
+        // if (laserCan != null) {
+        //     Measurement measurement = laserCan.getMeasurement();
+        //     hasCoral = measurement != null && measurement.status == LaserCan.LASERCAN_STATUS_VALID_MEASUREMENT
+        //             && measurement.distance_mm <= 1000 * IntakeConstants.DETECT_CORAL_DIST;
+        // }
     }
 
     public double getPivotAngle() {
@@ -58,11 +74,11 @@ public class Intake extends SubsystemBase {
     }
 
     public void stow() {
-        stowPID.setSetpoint(10); // IntakeConstants.Stowsetpoint
+        stowPID.setSetpoint(IntakeConstants.STOW_SETPOINT); // IntakeConstants.Stowsetpoint
     }
 
     public void unstow() {
-        stowPID.setSetpoint(0); // IntakeConstants.IntakeSetpoint
+        stowPID.setSetpoint(IntakeConstants.INTAKE_SETPOINT);
     }
 
     public void deactivate() {
@@ -70,6 +86,6 @@ public class Intake extends SubsystemBase {
     }
 
     public void activate() {
-        io.setRollerMotorThrottle(10); // IntakeConstants.INTAKE_MOTOR_POWER
+        io.setRollerMotorThrottle(IntakeConstants.INTAKE_MOTOR_POWER);
     }
 }
