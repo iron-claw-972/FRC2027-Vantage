@@ -8,6 +8,8 @@ public class Arm extends SubsystemBase{
     private ArmIO io;
     private ArmIOInputsAutoLogged inputs;
 
+    private final double tolerance = 0.01;
+
     public Arm(ArmIO io){
         this.io=io;
     }
@@ -21,4 +23,9 @@ public class Arm extends SubsystemBase{
     public void setSetpointRotations(double position){
         io.setSetpointRotation(position);
     }
+
+    public boolean atSetpoint(){
+        return  Math.abs(inputs.setpointRotations - inputs.armPosition) < tolerance;
+    }
 }
+
