@@ -19,6 +19,4 @@ public interface OuttakeIO {
     public default void stopOuttake() {
         startOuttake(0.0);
     }
-
-    public default void close() {}
 } 

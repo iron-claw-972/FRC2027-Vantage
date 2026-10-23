@@ -24,8 +24,4 @@ public class Outtake extends SubsystemBase {
     public void stopOuttake() {
         io.stopOuttake();
     }
-
-    public void close() {
-        io.close();
-    }
 }

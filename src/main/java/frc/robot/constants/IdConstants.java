@@ -36,7 +36,9 @@ public class IdConstants {
   public static final int SPINDEXER_TWO_ID = 8;
 
   // Intake
-  public static final int RIGHT_MOTOR_ID = 1;
-  public static final int LEFT_MOTOR_ID = 2;
-  public static final int ROLLER_MOTOR_ID = 3;
+  public static final int ROLLER_MOTOR_ID = 1;
+  public static final int STOW_MOTOR_ID = 2;
+
+  // Outtake
+  public static final int OUTTAKE_MOTOR_ID = 3;
 }

@@ -7,10 +7,11 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import frc.robot.constants.Constants;
+import frc.robot.constants.IdConstants;
 
 public class IntakeIOTalonFX implements IntakeIO{
-    private final TalonFX rollerMotor = new TalonFX(1, Constants.CANIVORE_CAN);
-    private final TalonFX stowMotor = new TalonFX(2, Constants.CANIVORE_CAN);
+    private final TalonFX rollerMotor = new TalonFX(IdConstants.ROLLER_MOTOR_ID, Constants.CANIVORE_CAN);
+    private final TalonFX stowMotor = new TalonFX(IdConstants.STOW_MOTOR_ID, Constants.CANIVORE_CAN);
 
     public IntakeIOTalonFX() {
         TalonFXConfiguration config = new TalonFXConfiguration();
